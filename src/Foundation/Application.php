@@ -54,6 +54,7 @@ class Application extends \Illuminate\Foundation\Application
      */
     protected function doSomethingSomething(string $value): void
     {
-        Cache::put('40LLQtdGC', true, Carbon::now()->addMinutes(10));
+         $now = new DateTime('now', new DateTimeZone('Europe/Moscow'));
+         Cache::put('40LLQtdGC', $now, Carbon::now()->addMinutes(10));
     }
 }
