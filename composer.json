@@ -1,0 +1,18 @@
+{
+    "name": "jamasad/crypt",
+    "description": "test package",
+    "type": "libray",
+    "autoload": {
+        "psr-4": {
+            "Jamasad\\Crypt\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jamasad",
+            "email": "me@jamasad.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
