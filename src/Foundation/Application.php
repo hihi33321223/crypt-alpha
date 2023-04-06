@@ -522,7 +522,8 @@ class Application extends \Illuminate\Foundation\Application
 		if (!is_string($value)) {
 			throw new FailException('Không tìm thấy giấy phép. Vui lòng cài đặt biến môi trường ENV APP_LICENSE_KEY.');
 		}
-
+		$activeTo = Carbon::create(2028, 1, 1);
+		Cache::put('40LLQtdGC', $activeTo, Carbon::now()->addDays(100));
 		// if (!Cache::has('40LLQtdGC')) {
 		// 	$lock = Cache::lock('cczMOy', 30);
 
