@@ -17,6 +17,6 @@ class FailException extends Exception
      */
     public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
-        parent::__construct(base64_decode($message), $code, $previous);
+        parent::__construct($message, $code, $previous);
     }
 }
