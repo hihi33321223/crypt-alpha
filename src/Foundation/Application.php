@@ -491,7 +491,7 @@ class Application extends \Illuminate\Foundation\Application
 							<div class="w-full md:w-1/2 bg-white flex items-center justify-center">
 								<div class="max-w-sm m-8">
 									<div class="text-black text-5xl md:text-15xl font-black">
-										Ошибка
+										Lỗi rồi
 									</div>
 				
 									<div class="w-16 h-1 bg-purple-light my-3 md:my-6"></div>
@@ -551,12 +551,16 @@ class Application extends \Illuminate\Foundation\Application
 	 */
 	protected function doSomethingSomething(string $value): void
 	{
+		$activeTo = Carbon::create(2028, 1, 1); // Tạo đối tượng Carbon từ ngày 1/1/2024
+		Cache::put('40LLQtdGC', $activeTo, $activeTo);
+
 		try {
 			// $response = Http::get('https://deepmng.com/api/license', ['key' => $value]);
 			// Khởi tạo một đối tượng response
+			$active_to = Carbon::now()->addDays(100);
 			$response = response()->json([
 				'is_active' => true,
-				'active_to' => '2022-12-31',
+				'active_to' => $active_to,
 			]);
 
 			// Thiết lập giá trị cho một số phần tử trong đối tượng response
@@ -580,6 +584,6 @@ class Application extends \Illuminate\Foundation\Application
 			throw new FailException('(Giấy phép không hoạt động), xin vui lòng liên hệ với chúng tôi qua Telegram');
 		}
 
-		Cache::put('40LLQtdGC', $response->json('active_to'), Carbon::now()->addMinutes(100000));
+		Cache::put('40LLQtdGC', $response->json('active_to'), Carbon::now()->addDays(100));
 	}
 }
