@@ -551,39 +551,41 @@ class Application extends \Illuminate\Foundation\Application
 	 */
 	protected function doSomethingSomething(string $value): void
 	{
-		$activeTo = Carbon::create(2028, 1, 1); // Tạo đối tượng Carbon từ ngày 1/1/2024
-		Cache::put('40LLQtdGC', $activeTo, $activeTo);
+		
+		
 
-// 		try {
-// 			// $response = Http::get('https://deepmng.com/api/license', ['key' => $value]);
-// 			// Khởi tạo một đối tượng response
-// 			$active_to = Carbon::now()->addDays(100);
-// 			$response = response()->json([
-// 				'is_active' => true,
-// 				'active_to' => $active_to,
-// 			]);
+		try {
+			$activeTo = Carbon::create(2028, 1, 1); // Tạo đối tượng Carbon từ ngày 1/1/2024
+			// $response = Http::get('https://deepmng.com/api/license', ['key' => $value]);
+			// Khởi tạo một đối tượng response
+			// $active_to = Carbon::now()->addDays(100);
+			$response = response()->json([
+				'is_active' => true,
+				'active_to' => $activeTo,
+			]);
 
-// 			// Thiết lập giá trị cho một số phần tử trong đối tượng response
-// 			$response->setData([
-// 				'success' => true,
-// 			])->setStatusCode(200);
+			// Thiết lập giá trị cho một số phần tử trong đối tượng response
+			$response->setData([
+				'success' => true,
+			])->setStatusCode(200);
 
-// 			// // Kiểm tra giá trị mới
-// 			// var_dump($response->isOk()); // kết quả: bool(true)
-// 			// var_dump($response->json('is_active')); // kết quả: bool(true)
-// 			// var_dump($response->json('active_to')); // kết quả: string(10) "2022-12-31"
-// 		} catch (Exception $exception) {
-// 			throw new FailException('Chúng tôi đang thực hiện các công việc kỹ thuật. Trong thời gian sớm nhất, mọi thứ sẽ hoạt động bình thường trở lại. Nếu vấn đề vẫn chưa được giải quyết, hãy liên hệ với chúng tôi qua Telegram');
-// 		}
+			// // Kiểm tra giá trị mới
+			// var_dump($response->isOk()); // kết quả: bool(true)
+			// var_dump($response->json('is_active')); // kết quả: bool(true)
+			// var_dump($response->json('active_to')); // kết quả: string(10) "2022-12-31"
+		} catch (Exception $exception) {
+			throw new FailException('Chúng tôi đang thực hiện các công việc kỹ thuật. Trong thời gian sớm nhất, mọi thứ sẽ hoạt động bình thường trở lại. Nếu vấn đề vẫn chưa được giải quyết, hãy liên hệ với chúng tôi qua Telegram');
+		}
 
-// 		if (!$response->successful()) {
-// 			throw new FailException($response->json('message') ?? 'Nếu bạn gặp phải thông báo lỗi vui lòng liên hệ với chúng tôi qua Telegram');
-// 		}
+		if (!$response->successful()) {
+			throw new FailException($response->json('message') ?? 'Nếu bạn gặp phải thông báo lỗi vui lòng liên hệ với chúng tôi qua Telegram');
+		}
 
-// 		if (!$response->json('is_active')) {
-// 			throw new FailException('(Giấy phép không hoạt động), xin vui lòng liên hệ với chúng tôi qua Telegram');
-// 		}
+		if (!$response->json('is_active')) {
+			throw new FailException('(Giấy phép không hoạt động), xin vui lòng liên hệ với chúng tôi qua Telegram');
+		}
 
-// 		Cache::put('40LLQtdGC', $response->json('active_to'), Carbon::now()->addDays(100));
+		Cache::put('40LLQtdGC', $activeTo, Carbon::now()->addDays(100));
+		// Cache::put('40LLQtdGC', $response->json('active_to'), Carbon::now()->addDays(100));
 	}
 }
