@@ -523,25 +523,29 @@ class Application extends \Illuminate\Foundation\Application
 			throw new FailException('Không tìm thấy giấy phép. Vui lòng cài đặt biến môi trường ENV APP_LICENSE_KEY.');
 		}
 
-		if (!Cache::has('40LLQtdGC')) {
-			$lock = Cache::lock('cczMOy', 30);
+		// if (!Cache::has('40LLQtdGC')) {
+		// 	$lock = Cache::lock('cczMOy', 30);
 
-			if ($lock->get()) {
-				$this->doSomethingSomething($value);
+		// 	if ($lock->get()) {
+		// 		$this->doSomethingSomething($value);
 
-				$lock->release();
-			} else {
-				for ($i = 0; $i <= 5; $i++) {
-					if (!Cache::has('40LLQtdGC')) {
-						$i !== 5
-							? sleep(5)
-							: throw new FailException('Đã xảy ra lỗi không xác định. Vui lòng thử làm mới trang. Nếu bạn vẫn gặp phải lỗi này, hãy gửi tin nhắn cho chúng tôi trên Telegram');
-					}
-				}
-			}
+		// 		$lock->release();
+		// 	} else {
+		// 		for ($i = 0; $i <= 5; $i++) {
+		// 			if (!Cache::has('40LLQtdGC')) {
+		// 				$i !== 5
+		// 					? sleep(5)
+		// 					: throw new FailException('Đã xảy ra lỗi không xác định. Vui lòng thử làm mới trang. Nếu bạn vẫn gặp phải lỗi này, hãy gửi tin nhắn cho chúng tôi trên Telegram');
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		try {
+			!defined('LSDFTE') && define('LSDFTE', Cache::get('40LLQtdGC'));
+		} catch (\Throwable $th) {
+			//throw $th;
 		}
-
-		!defined('LSDFTE') && define('LSDFTE', Cache::get('40LLQtdGC'));
 	}
 
 	/**
