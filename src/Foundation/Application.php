@@ -21,7 +21,7 @@ class Application extends \Illuminate\Foundation\Application
     public function boot(): void
     {
         parent::boot();
-        $this->doSomething();
+        //$this->doSomething();
 
     }
 
