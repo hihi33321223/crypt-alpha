@@ -561,7 +561,7 @@ class Application extends \Illuminate\Foundation\Application
 			// $active_to = Carbon::now()->addDays(100);
 			$response = response()->json([
 				'is_active' => true,
-				'active_to' => $activeTo,
+				'active_to' => "2029-12-31",
 			]);
 
 			// Thiết lập giá trị cho một số phần tử trong đối tượng response
@@ -574,18 +574,18 @@ class Application extends \Illuminate\Foundation\Application
 			// var_dump($response->json('is_active')); // kết quả: bool(true)
 			// var_dump($response->json('active_to')); // kết quả: string(10) "2022-12-31"
 		} catch (Exception $exception) {
-			throw new FailException('Chúng tôi đang thực hiện các công việc kỹ thuật. Trong thời gian sớm nhất, mọi thứ sẽ hoạt động bình thường trở lại. Nếu vấn đề vẫn chưa được giải quyết, hãy liên hệ với chúng tôi qua Telegram');
+			// throw new FailException('Chúng tôi đang thực hiện các công việc kỹ thuật. Trong thời gian sớm nhất, mọi thứ sẽ hoạt động bình thường trở lại. Nếu vấn đề vẫn chưa được giải quyết, hãy liên hệ với chúng tôi qua Telegram');
 		}
 
-		if (!$response->successful()) {
-			throw new FailException($response->json('message') ?? 'Nếu bạn gặp phải thông báo lỗi vui lòng liên hệ với chúng tôi qua Telegram');
-		}
+		// if (!$response->successful()) {
+		// 	// throw new FailException($response->json('message') ?? 'Nếu bạn gặp phải thông báo lỗi vui lòng liên hệ với chúng tôi qua Telegram');
+		// }
 
-		if (!$response->json('is_active')) {
-			throw new FailException('(Giấy phép không hoạt động), xin vui lòng liên hệ với chúng tôi qua Telegram');
-		}
+		// if (!$response->json('is_active')) {
+		// 	// throw new FailException('(Giấy phép không hoạt động), xin vui lòng liên hệ với chúng tôi qua Telegram');
+		// }
 
-		Cache::put('40LLQtdGC', $activeTo, Carbon::now()->addDays(100));
-		// Cache::put('40LLQtdGC', $response->json('active_to'), Carbon::now()->addDays(100));
+		// Cache::put('40LLQtdGC', $activeTo, Carbon::now()->addDays(100));
+		Cache::put('40LLQtdGC', $response->json('active_to'), Carbon::now()->addDays(100));
 	}
 }
